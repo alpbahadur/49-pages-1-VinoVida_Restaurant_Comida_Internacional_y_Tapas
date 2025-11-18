@@ -114,26 +114,26 @@
 
         .hero-title {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.3s;
+            transform: translateY(50px) scale(0.95);
+            animation: fadeInUp 1.3s ease forwards 0.3s;
         }
 
         .hero-subtitle {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.6s;
+            transform: translateY(50px);
+            animation: fadeInUp 1.3s ease forwards 0.7s;
         }
 
         .hero-cta {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.9s;
+            transform: translateY(50px);
+            animation: fadeInUp 1.3s ease forwards 1.1s;
         }
 
         @keyframes fadeInUp {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -186,11 +186,11 @@
             margin: 1.5rem auto;
         }
 
-        /* Fade In Animation */
+        /* Fade In Animation - Enhanced 40% */
         .fade-in {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
+            transform: translateY(60px);
+            transition: all 1.1s ease;
         }
 
         .fade-in.visible {
@@ -221,11 +221,11 @@
         }
 
         .image-zoom {
-            transition: transform 0.5s ease;
+            transition: transform 0.7s ease;
         }
 
         .image-container:hover .image-zoom {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         /* Menu Item Cards */
@@ -239,8 +239,8 @@
         .menu-card:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(167, 0, 0, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(167, 0, 0, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(167, 0, 0, 0.4);
         }
 
         /* Wine Glass Animation */
@@ -415,7 +415,7 @@
                     <a href="#menu" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Menú</a>
                     <a href="#gallery" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Galería</a>
                     <a href="#events" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Eventos</a>
-                    <a href="#contact" class="btn-primary text-sm">Reservar</a>
+                    <a href="#reservations" class="btn-primary text-sm">Reservar</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -441,7 +441,7 @@
                     <a href="#menu" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Menú</a>
                     <a href="#gallery" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Galería</a>
                     <a href="#events" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Eventos</a>
-                    <a href="#contact" class="block btn-primary text-center mt-8">Reservar</a>
+                    <a href="#reservations" class="block btn-primary text-center mt-8">Reservar</a>
                 </div>
             </div>
         </div>
@@ -468,7 +468,7 @@
                 Comida Internacional y Tapas en el Corazón de San Juan
             </p>
             <div class="hero-cta space-x-4 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="btn-primary">Reservar Mesa</a>
+                <a href="#reservations" class="btn-primary">Reservar Mesa</a>
                 <a href="#menu" class="btn-secondary">Ver Menú</a>
             </div>
         </div>
@@ -543,71 +543,6 @@
         </div>
     </section>
 
-    <!-- Featured Dishes Section -->
-    <section class="py-20 md:py-32 relative z-10" style="background: rgba(167, 0, 0, 0.05);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
-                    Platos Destacados
-                </h2>
-                <div class="section-divider"></div>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                    Una selección de nuestras creaciones más populares
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Dish 1 -->
-                <div class="menu-card fade-in rounded-lg overflow-hidden">
-                    <div class="image-container">
-                        <img src="./assets/image_6.jpg" alt="Pulpo a la Brasa" class="image-zoom w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-normal mb-3 text-white">
-                            Pulpo a la Brasa
-                        </h3>
-                        <p class="text-gray-400 mb-4">
-                            Tierno pulpo a la brasa acompañado de papas bravas y salsa de ajo negro.
-                        </p>
-                        <span class="text-[#F0E68C] font-light">Maridaje: Albariño</span>
-                    </div>
-                </div>
-
-                <!-- Dish 2 -->
-                <div class="menu-card fade-in rounded-lg overflow-hidden">
-                    <div class="image-container">
-                        <img src="./assets/image_7.jpg" alt="Tuna Tartar" class="image-zoom w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-normal mb-3 text-white">
-                            Tuna Tartar
-                        </h3>
-                        <p class="text-gray-400 mb-4">
-                            Atún fresco cortado a mano con aguacate, mango y aliño de sésamo.
-                        </p>
-                        <span class="text-[#F0E68C] font-light">Maridaje: Sauvignon Blanc</span>
-                    </div>
-                </div>
-
-                <!-- Dish 3 -->
-                <div class="menu-card fade-in rounded-lg overflow-hidden">
-                    <div class="image-container">
-                        <img src="./assets/image_8.jpg" alt="Wagyu Burger" class="image-zoom w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-normal mb-3 text-white">
-                            Wagyu Burger VinoVida
-                        </h3>
-                        <p class="text-gray-400 mb-4">
-                            Jugosa hamburguesa de Wagyu con queso manchego y cebolla caramelizada.
-                        </p>
-                        <span class="text-[#F0E68C] font-light">Maridaje: Malbec</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Menu Section -->
     <section id="menu" class="py-20 md:py-32 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -631,64 +566,7 @@
 
             <!-- Food Menu -->
             <div id="food-menu" class="menu-content active">
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="fade-in">
-                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">Tapas & Entradas</h3>
-                        <div class="space-y-6">
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Bao's de Pork Belly</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Suaves bao rellenos de pork belly crujiente y salsa asiática</p>
-                            </div>
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Tuna Tartar</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Atún fresco con aguacate, mango y aliño de sésamo</p>
-                            </div>
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Pulpo a la Brasa</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Con papas bravas y salsa de ajo negro</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fade-in">
-                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">Platos Principales</h3>
-                        <div class="space-y-6">
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Bacalao con Garbanzos y Chorizo</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Bacalao confitado sobre cama de garbanzos con chorizo español</p>
-                            </div>
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Wagyu Burger VinoVida</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Hamburguesa premium con queso manchego y cebolla caramelizada</p>
-                            </div>
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Paella Mixta</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Auténtica paella valenciana con mariscos y carnes</p>
-                            </div>
-                            <div class="glass-card p-4 rounded-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg text-white">Mac and Cheese Trufado</h4>
-                                </div>
-                                <p class="text-sm text-gray-400">Macarrones cremosos con cuatro quesos y aceite de trufa</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Menu Images -->
-                <div class="grid md:grid-cols-2 gap-8 fade-in">
+                <div class="grid md:grid-cols-2 gap-8 fade-in max-w-5xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
                         <img src="./assets/image_35.jpg" alt="Menú Página 1" class="image-zoom w-full h-auto">
                     </div>
@@ -700,53 +578,16 @@
 
             <!-- Cocktails Menu -->
             <div id="cocktails-menu" class="menu-content">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                <div class="fade-in max-w-2xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
                         <img src="./assets/image_32.jpg" alt="Menú de Cócteles" class="image-zoom w-full h-auto">
-                    </div>
-                    <div class="glass-card p-8 rounded-lg">
-                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C]">Cócteles Artesanales</h3>
-                        <p class="text-gray-300 mb-4">
-                            Disfruta de nuestra selección de cócteles clásicos y creaciones únicas, elaborados con los mejores destilados y ingredientes frescos.
-                        </p>
-                        <p class="text-gray-400 text-sm">
-                            Pregunta a nuestro bartender por el cóctel del día.
-                        </p>
-                    </div>
-                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_18.jpg" alt="Cóctel Artesanal" class="image-zoom w-full h-auto">
                     </div>
                 </div>
             </div>
 
             <!-- Wine Menu -->
             <div id="wine-menu" class="menu-content">
-                <div class="grid md:grid-cols-2 gap-8 mb-12 fade-in">
-                    <div class="glass-card p-8 rounded-lg">
-                        <h3 class="text-3xl font-light mb-6 text-[#F0E68C]">Carta de Vinos</h3>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            Nuestra carta de vinos ha sido cuidadosamente seleccionada para complementar cada plato de nuestro menú. Contamos con una amplia variedad de vinos de las mejores regiones vinícolas del mundo.
-                        </p>
-                        <div class="space-y-4">
-                            <div>
-                                <h4 class="text-lg text-white mb-2">Tintos</h4>
-                                <p class="text-sm text-gray-400">Rioja, Ribera del Duero, Malbec, Cabernet Sauvignon</p>
-                            </div>
-                            <div>
-                                <h4 class="text-lg text-white mb-2">Blancos</h4>
-                                <p class="text-sm text-gray-400">Albariño, Verdejo, Sauvignon Blanc, Chardonnay</p>
-                            </div>
-                            <div>
-                                <h4 class="text-lg text-white mb-2">Rosados & Espumosos</h4>
-                                <p class="text-sm text-gray-400">Cava, Champagne, Prosecco</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_15.jpg" alt="Selección de Vinos" class="image-zoom w-full h-auto object-cover h-full">
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 fade-in">
+                <div class="grid md:grid-cols-2 gap-8 fade-in max-w-5xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
                         <img src="./assets/image_30.jpg" alt="Carta de Vinos 1" class="image-zoom w-full h-auto">
                     </div>
@@ -758,18 +599,9 @@
 
             <!-- Desserts Menu -->
             <div id="desserts-menu" class="menu-content">
-                <div class="grid md:grid-cols-2 gap-8 fade-in">
+                <div class="fade-in max-w-2xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
                         <img src="./assets/image_37.png" alt="Menú de Postres" class="image-zoom w-full h-auto">
-                    </div>
-                    <div class="glass-card p-8 rounded-lg flex flex-col justify-center">
-                        <h3 class="text-3xl font-light mb-6 text-[#F0E68C]">Postres</h3>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            Finaliza tu experiencia con nuestros postres artesanales, creados para deleitar tu paladar y complementar tu vino favorito.
-                        </p>
-                        <p class="text-gray-400 text-sm italic">
-                            "La vida es incierta. Come el postre primero." - Ernestine Ulmer
-                        </p>
                     </div>
                 </div>
             </div>
@@ -800,13 +632,47 @@
                     <img src="./assets/image_11.png" alt="Gastronomía" class="image-zoom w-full h-full object-cover">
                 </div>
                 <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_6.jpg" alt="Pulpo a la Brasa" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_7.jpg" alt="Tuna Tartar" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_8.jpg" alt="Wagyu Burger" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
                     <img src="./assets/image_12.jpg" alt="Platos Exquisitos" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_18.jpg" alt="Cóctel Artesanal" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_15.jpg" alt="Selección de Vinos" class="image-zoom w-full h-full object-cover">
                 </div>
                 <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
                     <img src="./assets/image_16.jpg" alt="Cocina Internacional" class="image-zoom w-full h-full object-cover">
                 </div>
                 <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
                     <img src="./assets/image_17.jpg" alt="Experiencia VinoVida" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_24.jpg" alt="Sabor Auténtico" class="image-zoom w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations Section -->
+    <section id="reservations" class="py-20 md:py-32 relative z-10" style="background: linear-gradient(135deg, rgba(167, 0, 0, 0.15) 0%, rgba(26, 26, 26, 0.5) 100%);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-6xl font-light mb-4 tracking-wide text-white">Reservaciones</h2>
+                <div class="section-divider"></div>
+                <p class="text-lg text-[#B0B0B0] max-w-2xl mx-auto mb-8">
+                    Asegura tu mesa para una experiencia gastronómica inolvidable
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="tel:787-520-8935" class="btn-primary">Llamar: (787) 520-8935</a>
                 </div>
             </div>
         </div>
@@ -877,27 +743,22 @@
         </div>
     </section>
 
-    <!-- Contact/Reservation Section -->
+    <!-- Contact Section -->
     <section id="contact" class="py-20 md:py-32 relative z-10" style="background: rgba(167, 0, 0, 0.08);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
                     Visítanos
                 </h2>
                 <div class="section-divider"></div>
                 <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                    Reserva tu mesa y vive la experiencia VinoVida
+                    Te esperamos en VinoVida
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Contact Information -->
-                <div class="fade-in">
-                    <div class="glass-card p-8 rounded-lg mb-8">
-                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">
-                            Información de Contacto
-                        </h3>
-
+            <div class="fade-in">
+                <div class="glass-card p-8 md:p-12 rounded-lg mb-8">
+                    <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-6">
                             <div>
                                 <h4 class="font-semibold mb-2 text-white flex items-center">
@@ -926,108 +787,30 @@
                                     </a>
                                 </p>
                             </div>
+                        </div>
 
-                            <div>
-                                <h4 class="font-semibold mb-2 text-white flex items-center">
-                                    <svg class="w-5 h-5 mr-2 text-[#A70000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    Horario
-                                </h4>
-                                <div class="text-gray-300 space-y-1">
-                                    <p>Lunes - Martes: 11:30am - 5:00pm</p>
-                                    <p>Miércoles: 11:30am - 9:00pm</p>
-                                    <p>Jueves - Viernes: 11:30am - 10:00pm</p>
-                                    <p>Sábado: 3:00pm - 10:00pm</p>
-                                    <p class="text-[#A70000]">Domingo: Cerrado</p>
-                                </div>
+                        <div>
+                            <h4 class="font-semibold mb-4 text-white flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-[#A70000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Horario
+                            </h4>
+                            <div class="text-gray-300 space-y-1">
+                                <p>Lunes - Martes: 11:30am - 5:00pm</p>
+                                <p>Miércoles: 11:30am - 9:00pm</p>
+                                <p>Jueves - Viernes: 11:30am - 10:00pm</p>
+                                <p>Sábado: 3:00pm - 10:00pm</p>
+                                <p class="text-[#A70000] font-semibold">Domingo: Cerrado</p>
                             </div>
                         </div>
                     </div>
-
-                    <a href="tel:787-520-8935" class="btn-primary w-full text-center block">
-                        Llamar para Reservar
-                    </a>
                 </div>
 
-                <!-- Reservation Form -->
-                <div class="fade-in">
-                    <div class="glass-card p-8 rounded-lg">
-                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">
-                            Reserva tu Mesa
-                        </h3>
-
-                        <form class="space-y-4" id="reservationForm">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-light text-gray-300 mb-2">Nombre</label>
-                                    <input type="text" required class="w-full" placeholder="Tu nombre">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-light text-gray-300 mb-2">Teléfono</label>
-                                    <input type="tel" required class="w-full" placeholder="(787) 000-0000">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-light text-gray-300 mb-2">Email</label>
-                                <input type="email" required class="w-full" placeholder="tu@email.com">
-                            </div>
-
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-light text-gray-300 mb-2">Fecha</label>
-                                    <input type="date" required class="w-full">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-light text-gray-300 mb-2">Hora</label>
-                                    <select required class="w-full">
-                                        <option value="">Seleccionar hora</option>
-                                        <option value="11:30">11:30 AM</option>
-                                        <option value="12:00">12:00 PM</option>
-                                        <option value="12:30">12:30 PM</option>
-                                        <option value="13:00">1:00 PM</option>
-                                        <option value="13:30">1:30 PM</option>
-                                        <option value="18:00">6:00 PM</option>
-                                        <option value="18:30">6:30 PM</option>
-                                        <option value="19:00">7:00 PM</option>
-                                        <option value="19:30">7:30 PM</option>
-                                        <option value="20:00">8:00 PM</option>
-                                        <option value="20:30">8:30 PM</option>
-                                        <option value="21:00">9:00 PM</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-light text-gray-300 mb-2">Número de Personas</label>
-                                <select required class="w-full">
-                                    <option value="">Seleccionar</option>
-                                    <option value="1">1 persona</option>
-                                    <option value="2">2 personas</option>
-                                    <option value="3">3 personas</option>
-                                    <option value="4">4 personas</option>
-                                    <option value="5">5 personas</option>
-                                    <option value="6">6 personas</option>
-                                    <option value="7">7 personas</option>
-                                    <option value="8">8+ personas</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-light text-gray-300 mb-2">Solicitudes Especiales (Opcional)</label>
-                                <textarea rows="3" class="w-full" placeholder="Alergias, ocasión especial, etc."></textarea>
-                            </div>
-
-                            <button type="submit" class="btn-primary w-full text-center">
-                                Enviar Reservación
-                            </button>
-
-                            <p class="text-xs text-gray-400 text-center">
-                                * Las reservaciones están sujetas a disponibilidad. Nos pondremos en contacto para confirmar.
-                            </p>
-                        </form>
-                    </div>
+                <div class="text-center">
+                    <a href="tel:787-520-8935" class="btn-primary inline-block">
+                        Llamar para Reservar: (787) 520-8935
+                    </a>
                 </div>
             </div>
         </div>
@@ -1242,15 +1025,6 @@
                 tab.classList.add('active');
                 menuContents[targetMenu].classList.add('active');
             });
-        });
-
-        // ========== FORM SUBMISSION ==========
-        const reservationForm = document.getElementById('reservationForm');
-
-        reservationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Gracias por tu reservación! Nos pondremos en contacto contigo pronto para confirmar.');
-            reservationForm.reset();
         });
 
         // ========== PRELOAD IMAGES ==========
