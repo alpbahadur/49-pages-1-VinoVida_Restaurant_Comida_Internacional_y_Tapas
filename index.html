@@ -1,11 +1,1271 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <title>VinoVida | Restaurante en San Juan | Comida Internacional y Tapas</title>
+    <meta name="description" content="Descubre VinoVida, un restaurante en San Juan que combina comida internacional, exquisitas tapas y una selección de vinos de primera. Donde el Vino y la Vida se Encuentran.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        /* Wine Background Animation */
+        .wine-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D0A0A 50%, #1A1A1A 100%);
+            opacity: 0.95;
+        }
+
+        .wine-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(167, 0, 0, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(167, 0, 0, 0.15) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 26, 26, 0.98);
+            box-shadow: 0 4px 20px rgba(167, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #A70000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Hero Section */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.4), rgba(26, 26, 26, 0.8));
+        }
+
+        .hero-title {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .hero-subtitle {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.6s;
+        }
+
+        .hero-cta {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #A70000;
+            color: #FFFFFF;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(167, 0, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #8B0000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(167, 0, 0, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFFFFF;
+            padding: 1rem 2.5rem;
+            border: 2px solid #A70000;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #A70000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(167, 0, 0, 0.4);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #A70000, transparent);
+            margin: 1.5rem auto;
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Hover Effects */
+        .image-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(167, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container:hover::after {
+            opacity: 1;
+        }
+
+        .image-zoom {
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover .image-zoom {
+            transform: scale(1.1);
+        }
+
+        /* Menu Item Cards */
+        .menu-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(167, 0, 0, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(167, 0, 0, 0.3);
+        }
+
+        /* Wine Glass Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Timeline */
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            transform: translateX(50px);
+        }
+
+        .timeline-item:nth-child(even).visible {
+            transform: translateX(0);
+        }
+
+        /* Wine Pour SVG */
+        .wine-pour {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: pour 2s ease forwards;
+        }
+
+        @keyframes pour {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Loading Images */
+        img {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        img.loaded {
+            opacity: 1;
+        }
+
+        /* Form Styles */
+        input, textarea, select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(167, 0, 0, 0.3);
+            color: #FFFFFF;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #A70000;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(167, 0, 0, 0.1);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #B0B0B0;
+        }
+
+        /* Menu Tab Buttons */
+        .menu-tab {
+            background: transparent;
+            border: 2px solid rgba(167, 0, 0, 0.3);
+            color: #B0B0B0;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-tab.active {
+            background: #A70000;
+            border-color: #A70000;
+            color: #FFFFFF;
+        }
+
+        .menu-tab:hover:not(.active) {
+            border-color: #A70000;
+            color: #FFFFFF;
+        }
+
+        .menu-content {
+            display: none;
+        }
+
+        .menu-content.active {
+            display: block;
+        }
+
+        /* Accent Color */
+        .accent-text {
+            color: #F0E68C;
+        }
+
+        /* Glass Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Content will be added here -->
+    <!-- Animated Wine Background -->
+    <div class="wine-background"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl md:text-3xl font-light text-white" style="letter-spacing: 3px;">VINOVIDA</h1>
+                    <p class="text-xs text-gray-400" style="letter-spacing: 2px;">RESTAURANT</p>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Inicio</a>
+                    <a href="#story" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Nuestra Historia</a>
+                    <a href="#menu" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Menú</a>
+                    <a href="#gallery" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Galería</a>
+                    <a href="#events" class="nav-link text-white hover:text-[#F0E68C] font-light uppercase tracking-wider text-sm">Eventos</a>
+                    <a href="#contact" class="btn-primary text-sm">Reservar</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-0 right-0 h-full w-64 shadow-2xl z-50">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white float-right focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="clear-both mt-12 space-y-6">
+                    <a href="#home" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Inicio</a>
+                    <a href="#story" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Nuestra Historia</a>
+                    <a href="#menu" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Menú</a>
+                    <a href="#gallery" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Galería</a>
+                    <a href="#events" class="block text-white hover:text-[#F0E68C] text-lg uppercase tracking-wider">Eventos</a>
+                    <a href="#contact" class="block btn-primary text-center mt-8">Reservar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="./assets/image_2.png" alt="VinoVida Restaurant" class="w-full h-full object-cover loaded">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h2 class="hero-title text-5xl md:text-7xl lg:text-8xl font-light text-white mb-6" style="letter-spacing: 6px;">
+                VINOVIDA
+            </h2>
+            <div class="section-divider"></div>
+            <p class="hero-subtitle text-2xl md:text-4xl text-[#F0E68C] mb-4 font-light" style="letter-spacing: 3px;">
+                Donde el Vino y la Vida se Encuentran
+            </p>
+            <p class="hero-subtitle text-lg md:text-xl text-white mb-10 font-light">
+                Comida Internacional y Tapas en el Corazón de San Juan
+            </p>
+            <div class="hero-cta space-x-4 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary">Reservar Mesa</a>
+                <a href="#menu" class="btn-secondary">Ver Menú</a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 scroll-indicator">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="py-20 md:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
+                    Nuestra Historia
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-xl text-[#F0E68C] max-w-3xl mx-auto" style="letter-spacing: 2px;">
+                    Celebrando la vida en cada copa
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="fade-in">
+                    <h3 class="text-3xl md:text-4xl font-light mb-6 text-white">
+                        El Agua de la Vida
+                    </h3>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        La historia de VinoVida nace del profundo amor por la conexión entre el vino y la vida. Desde tiempos antiguos, el vino ha sido símbolo de amistad, celebración y momentos inolvidables.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        Es el agua de la vida, un puente que une a seres queridos, amigos e incluso desconocidos en experiencias llenas de alegría y significado. En VinoVida, honramos esta tradición, creando un espacio donde cada copa cuenta una historia y cada encuentro se convierte en un recuerdo especial.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-8 text-gray-300">
+                        Te invitamos a compartir, disfrutar y ser parte de nuestra historia.
+                    </p>
+                    <div class="glass-card p-6 rounded-lg">
+                        <p class="text-[#F0E68C] italic text-lg mb-2">
+                            "El vino es poesía embotellada"
+                        </p>
+                        <p class="text-sm text-gray-400">— Robert Louis Stevenson</p>
+                    </div>
+                </div>
+
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-2xl">
+                    <img src="./assets/image_5.jpg" alt="Wine and Life" class="image-zoom w-full h-auto">
+                </div>
+            </div>
+
+            <!-- Philosophy Section -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-2xl order-2 md:order-1">
+                    <img src="./assets/image_0.jpg" alt="Sabores que Enamoran" class="image-zoom w-full h-auto">
+                </div>
+
+                <div class="fade-in order-1 md:order-2">
+                    <h3 class="text-3xl md:text-4xl font-light mb-6 text-white">
+                        Sabores que Enamoran
+                    </h3>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        Celebramos la diversidad gastronómica con platos inspirados en sabores de todo el mundo, combinando ingredientes de alta calidad y técnicas excepcionales.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        Desde delicadas tapas hasta contundentes platos principales, cada creación está diseñada para despertar los sentidos y maridar perfectamente con nuestra selección de vinos premium.
+                    </p>
+                    <a href="#menu" class="btn-secondary">Explorar Menú</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes Section -->
+    <section class="py-20 md:py-32 relative z-10" style="background: rgba(167, 0, 0, 0.05);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
+                    Platos Destacados
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Una selección de nuestras creaciones más populares
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Dish 1 -->
+                <div class="menu-card fade-in rounded-lg overflow-hidden">
+                    <div class="image-container">
+                        <img src="./assets/image_6.jpg" alt="Pulpo a la Brasa" class="image-zoom w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-normal mb-3 text-white">
+                            Pulpo a la Brasa
+                        </h3>
+                        <p class="text-gray-400 mb-4">
+                            Tierno pulpo a la brasa acompañado de papas bravas y salsa de ajo negro.
+                        </p>
+                        <span class="text-[#F0E68C] font-light">Maridaje: Albariño</span>
+                    </div>
+                </div>
+
+                <!-- Dish 2 -->
+                <div class="menu-card fade-in rounded-lg overflow-hidden">
+                    <div class="image-container">
+                        <img src="./assets/image_7.jpg" alt="Tuna Tartar" class="image-zoom w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-normal mb-3 text-white">
+                            Tuna Tartar
+                        </h3>
+                        <p class="text-gray-400 mb-4">
+                            Atún fresco cortado a mano con aguacate, mango y aliño de sésamo.
+                        </p>
+                        <span class="text-[#F0E68C] font-light">Maridaje: Sauvignon Blanc</span>
+                    </div>
+                </div>
+
+                <!-- Dish 3 -->
+                <div class="menu-card fade-in rounded-lg overflow-hidden">
+                    <div class="image-container">
+                        <img src="./assets/image_8.jpg" alt="Wagyu Burger" class="image-zoom w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-normal mb-3 text-white">
+                            Wagyu Burger VinoVida
+                        </h3>
+                        <p class="text-gray-400 mb-4">
+                            Jugosa hamburguesa de Wagyu con queso manchego y cebolla caramelizada.
+                        </p>
+                        <span class="text-[#F0E68C] font-light">Maridaje: Malbec</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 md:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
+                    Nuestro Menú
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Descubre nuestra selección de platos, cócteles y vinos
+                </p>
+            </div>
+
+            <!-- Menu Tabs -->
+            <div class="flex justify-center mb-12 gap-4 flex-wrap">
+                <button class="menu-tab active" data-menu="food">Comida</button>
+                <button class="menu-tab" data-menu="cocktails">Cócteles</button>
+                <button class="menu-tab" data-menu="wine">Vinos</button>
+                <button class="menu-tab" data-menu="desserts">Postres</button>
+            </div>
+
+            <!-- Food Menu -->
+            <div id="food-menu" class="menu-content active">
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">Tapas & Entradas</h3>
+                        <div class="space-y-6">
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Bao's de Pork Belly</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Suaves bao rellenos de pork belly crujiente y salsa asiática</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Tuna Tartar</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Atún fresco con aguacate, mango y aliño de sésamo</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Pulpo a la Brasa</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Con papas bravas y salsa de ajo negro</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">Platos Principales</h3>
+                        <div class="space-y-6">
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Bacalao con Garbanzos y Chorizo</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Bacalao confitado sobre cama de garbanzos con chorizo español</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Wagyu Burger VinoVida</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Hamburguesa premium con queso manchego y cebolla caramelizada</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Paella Mixta</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Auténtica paella valenciana con mariscos y carnes</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg text-white">Mac and Cheese Trufado</h4>
+                                </div>
+                                <p class="text-sm text-gray-400">Macarrones cremosos con cuatro quesos y aceite de trufa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Images -->
+                <div class="grid md:grid-cols-2 gap-8 fade-in">
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_35.jpg" alt="Menú Página 1" class="image-zoom w-full h-auto">
+                    </div>
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_34.jpg" alt="Menú Página 2" class="image-zoom w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cocktails Menu -->
+            <div id="cocktails-menu" class="menu-content">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_32.jpg" alt="Menú de Cócteles" class="image-zoom w-full h-auto">
+                    </div>
+                    <div class="glass-card p-8 rounded-lg">
+                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C]">Cócteles Artesanales</h3>
+                        <p class="text-gray-300 mb-4">
+                            Disfruta de nuestra selección de cócteles clásicos y creaciones únicas, elaborados con los mejores destilados y ingredientes frescos.
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            Pregunta a nuestro bartender por el cóctel del día.
+                        </p>
+                    </div>
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_18.jpg" alt="Cóctel Artesanal" class="image-zoom w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wine Menu -->
+            <div id="wine-menu" class="menu-content">
+                <div class="grid md:grid-cols-2 gap-8 mb-12 fade-in">
+                    <div class="glass-card p-8 rounded-lg">
+                        <h3 class="text-3xl font-light mb-6 text-[#F0E68C]">Carta de Vinos</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Nuestra carta de vinos ha sido cuidadosamente seleccionada para complementar cada plato de nuestro menú. Contamos con una amplia variedad de vinos de las mejores regiones vinícolas del mundo.
+                        </p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-lg text-white mb-2">Tintos</h4>
+                                <p class="text-sm text-gray-400">Rioja, Ribera del Duero, Malbec, Cabernet Sauvignon</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg text-white mb-2">Blancos</h4>
+                                <p class="text-sm text-gray-400">Albariño, Verdejo, Sauvignon Blanc, Chardonnay</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg text-white mb-2">Rosados & Espumosos</h4>
+                                <p class="text-sm text-gray-400">Cava, Champagne, Prosecco</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_15.jpg" alt="Selección de Vinos" class="image-zoom w-full h-auto object-cover h-full">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 fade-in">
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_30.jpg" alt="Carta de Vinos 1" class="image-zoom w-full h-auto">
+                    </div>
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_31.jpg" alt="Carta de Vinos 2" class="image-zoom w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts Menu -->
+            <div id="desserts-menu" class="menu-content">
+                <div class="grid md:grid-cols-2 gap-8 fade-in">
+                    <div class="image-container rounded-lg overflow-hidden shadow-xl">
+                        <img src="./assets/image_37.png" alt="Menú de Postres" class="image-zoom w-full h-auto">
+                    </div>
+                    <div class="glass-card p-8 rounded-lg flex flex-col justify-center">
+                        <h3 class="text-3xl font-light mb-6 text-[#F0E68C]">Postres</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Finaliza tu experiencia con nuestros postres artesanales, creados para deleitar tu paladar y complementar tu vino favorito.
+                        </p>
+                        <p class="text-gray-400 text-sm italic">
+                            "La vida es incierta. Come el postre primero." - Ernestine Ulmer
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 md:py-32 relative z-10" style="background: rgba(167, 0, 0, 0.05);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
+                    Galería
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Un vistazo a nuestra experiencia gastronómica
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_9.png" alt="Restaurante VinoVida" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_10.png" alt="Ambiente Elegante" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_11.png" alt="Gastronomía" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_12.jpg" alt="Platos Exquisitos" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_16.jpg" alt="Cocina Internacional" class="image-zoom w-full h-full object-cover">
+                </div>
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-lg h-80">
+                    <img src="./assets/image_17.jpg" alt="Experiencia VinoVida" class="image-zoom w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Events Section -->
+    <section id="events" class="py-20 md:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
+                    Eventos Privados
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-xl text-[#F0E68C] max-w-3xl mx-auto" style="letter-spacing: 2px;">
+                    Donde cada evento es especial
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="fade-in image-container rounded-lg overflow-hidden shadow-2xl">
+                    <img src="./assets/image_36.png" alt="Eventos Privados" class="image-zoom w-full h-auto">
+                </div>
+
+                <div class="fade-in">
+                    <h3 class="text-3xl md:text-4xl font-light mb-6 text-white">
+                        Crea Recuerdos Especiales
+                    </h3>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        Celebra momentos especiales o eventos corporativos en un ambiente elegante y acogedor. En VinoVida, ofrecemos espacios exclusivos ideales para cenas privadas, reuniones de negocios, celebraciones familiares y eventos corporativos.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        Nuestro equipo se encarga de cada detalle, desde la selección del menú hasta la ambientación, para garantizar una experiencia única.
+                    </p>
+
+                    <div class="glass-card p-6 rounded-lg mb-8">
+                        <h4 class="text-xl font-light mb-4 text-[#F0E68C]">Nuestros Servicios</h4>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-[#A70000] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Espacios para grupos de 20-25 personas
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-[#A70000] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Menús personalizados
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-[#A70000] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Cócteles y maridajes de vino
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-[#A70000] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Servicio excepcional dedicado
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="tel:787-520-8935" class="btn-primary">Solicitar Evento</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Reservation Section -->
+    <section id="contact" class="py-20 md:py-32 relative z-10" style="background: rgba(167, 0, 0, 0.08);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-white">
+                    Visítanos
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Reserva tu mesa y vive la experiencia VinoVida
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div class="fade-in">
+                    <div class="glass-card p-8 rounded-lg mb-8">
+                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">
+                            Información de Contacto
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold mb-2 text-white flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-[#A70000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    Dirección
+                                </h4>
+                                <p class="text-gray-300">
+                                    275 Av. Ing. Manuel Domenech<br>
+                                    San Juan, Puerto Rico
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold mb-2 text-white flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-[#A70000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                    Teléfono
+                                </h4>
+                                <p>
+                                    <a href="tel:787-520-8935" class="text-[#F0E68C] hover:text-white transition-colors text-lg">
+                                        (787) 520-8935
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold mb-2 text-white flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-[#A70000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Horario
+                                </h4>
+                                <div class="text-gray-300 space-y-1">
+                                    <p>Lunes - Martes: 11:30am - 5:00pm</p>
+                                    <p>Miércoles: 11:30am - 9:00pm</p>
+                                    <p>Jueves - Viernes: 11:30am - 10:00pm</p>
+                                    <p>Sábado: 3:00pm - 10:00pm</p>
+                                    <p class="text-[#A70000]">Domingo: Cerrado</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="tel:787-520-8935" class="btn-primary w-full text-center block">
+                        Llamar para Reservar
+                    </a>
+                </div>
+
+                <!-- Reservation Form -->
+                <div class="fade-in">
+                    <div class="glass-card p-8 rounded-lg">
+                        <h3 class="text-2xl font-light mb-6 text-[#F0E68C] uppercase tracking-wider">
+                            Reserva tu Mesa
+                        </h3>
+
+                        <form class="space-y-4" id="reservationForm">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-light text-gray-300 mb-2">Nombre</label>
+                                    <input type="text" required class="w-full" placeholder="Tu nombre">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-light text-gray-300 mb-2">Teléfono</label>
+                                    <input type="tel" required class="w-full" placeholder="(787) 000-0000">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-light text-gray-300 mb-2">Email</label>
+                                <input type="email" required class="w-full" placeholder="tu@email.com">
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-light text-gray-300 mb-2">Fecha</label>
+                                    <input type="date" required class="w-full">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-light text-gray-300 mb-2">Hora</label>
+                                    <select required class="w-full">
+                                        <option value="">Seleccionar hora</option>
+                                        <option value="11:30">11:30 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="12:30">12:30 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="13:30">1:30 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                        <option value="18:30">6:30 PM</option>
+                                        <option value="19:00">7:00 PM</option>
+                                        <option value="19:30">7:30 PM</option>
+                                        <option value="20:00">8:00 PM</option>
+                                        <option value="20:30">8:30 PM</option>
+                                        <option value="21:00">9:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-light text-gray-300 mb-2">Número de Personas</label>
+                                <select required class="w-full">
+                                    <option value="">Seleccionar</option>
+                                    <option value="1">1 persona</option>
+                                    <option value="2">2 personas</option>
+                                    <option value="3">3 personas</option>
+                                    <option value="4">4 personas</option>
+                                    <option value="5">5 personas</option>
+                                    <option value="6">6 personas</option>
+                                    <option value="7">7 personas</option>
+                                    <option value="8">8+ personas</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-light text-gray-300 mb-2">Solicitudes Especiales (Opcional)</label>
+                                <textarea rows="3" class="w-full" placeholder="Alergias, ocasión especial, etc."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full text-center">
+                                Enviar Reservación
+                            </button>
+
+                            <p class="text-xs text-gray-400 text-center">
+                                * Las reservaciones están sujetas a disponibilidad. Nos pondremos en contacto para confirmar.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 relative z-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Column 1: About -->
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-light mb-4" style="letter-spacing: 3px;">VINOVIDA</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        Donde el Vino y la Vida se Encuentran. Un espacio para celebrar, compartir y crear recuerdos inolvidables a través de la gastronomía internacional y los mejores vinos.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        © 2025 VinoVida Restaurant. Todos los derechos reservados.
+                    </p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h4 class="text-lg font-normal mb-4 text-[#F0E68C]">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#story" class="text-gray-400 hover:text-white transition-colors">Nuestra Historia</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition-colors">Menú</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition-colors">Galería</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white transition-colors">Eventos Privados</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact -->
+                <div>
+                    <h4 class="text-lg font-normal mb-4 text-[#F0E68C]">Contacto</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>275 Av. Ing. Manuel Domenech</li>
+                        <li>San Juan, Puerto Rico</li>
+                        <li class="pt-2">
+                            <a href="tel:787-520-8935" class="hover:text-white transition-colors">
+                                (787) 520-8935
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-sm text-gray-500">
+                    Diseñado con pasión para celebrar la vida | VinoVida Restaurant
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ========== CANVAS PARTICLE ANIMATION - WINE THEME ==========
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Particle class for wine-themed elements
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.3 + 0.1;
+                this.color = ['rgba(167, 0, 0, 0.3)', 'rgba(240, 230, 140, 0.2)', 'rgba(255, 255, 255, 0.1)'][Math.floor(Math.random() * 3)];
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Wrap around edges
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        const particleCount = window.innerWidth < 768 ? 30 : 60;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        // ========== NAVIGATION SCROLL EFFECT ==========
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ========== MOBILE MENU ==========
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // ========== SCROLL ANIMATIONS ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ========== SMOOTH SCROLLING ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========== MENU TABS ==========
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuContents = {
+            'food': document.getElementById('food-menu'),
+            'cocktails': document.getElementById('cocktails-menu'),
+            'wine': document.getElementById('wine-menu'),
+            'desserts': document.getElementById('desserts-menu')
+        };
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetMenu = tab.getAttribute('data-menu');
+
+                // Remove active class from all tabs and contents
+                menuTabs.forEach(t => t.classList.remove('active'));
+                Object.values(menuContents).forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                menuContents[targetMenu].classList.add('active');
+            });
+        });
+
+        // ========== FORM SUBMISSION ==========
+        const reservationForm = document.getElementById('reservationForm');
+
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu reservación! Nos pondremos en contacto contigo pronto para confirmar.');
+            reservationForm.reset();
+        });
+
+        // ========== PRELOAD IMAGES ==========
+        window.addEventListener('load', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.classList.add('loaded');
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
