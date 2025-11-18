@@ -398,6 +398,114 @@
                 transform: translateY(-5px);
             }
         }
+
+        /* Menu Image Modal */
+        .menu-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.95);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .menu-modal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .menu-modal-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .menu-modal-image-wrapper {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: modalZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalZoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .menu-modal-image-wrapper img {
+            max-width: 100%;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 25px 80px rgba(167, 0, 0, 0.5);
+        }
+
+        .menu-modal-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(167, 0, 0, 0.2);
+            pointer-events: none;
+            border-radius: 8px;
+        }
+
+        .menu-modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            z-index: 3;
+            background: rgba(167, 0, 0, 0.9);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-modal-close:hover {
+            background: #8B0000;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .menu-image-clickable {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -577,10 +685,10 @@
             <div id="food-menu" class="menu-content active">
                 <div class="grid md:grid-cols-2 gap-8 fade-in max-w-5xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_35.jpg" alt="Menú Página 1" class="image-zoom w-full h-auto">
+                        <img src="./assets/image_35.jpg" alt="Menú Página 1" class="image-zoom menu-image-clickable w-full h-auto">
                     </div>
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_34.jpg" alt="Menú Página 2" class="image-zoom w-full h-auto">
+                        <img src="./assets/image_34.jpg" alt="Menú Página 2" class="image-zoom menu-image-clickable w-full h-auto">
                     </div>
                 </div>
             </div>
@@ -589,7 +697,7 @@
             <div id="cocktails-menu" class="menu-content">
                 <div class="fade-in max-w-2xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_32.jpg" alt="Menú de Cócteles" class="image-zoom w-full h-auto">
+                        <img src="./assets/image_32.jpg" alt="Menú de Cócteles" class="image-zoom menu-image-clickable w-full h-auto">
                     </div>
                 </div>
             </div>
@@ -598,10 +706,10 @@
             <div id="wine-menu" class="menu-content">
                 <div class="grid md:grid-cols-2 gap-8 fade-in max-w-5xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_30.jpg" alt="Carta de Vinos 1" class="image-zoom w-full h-auto">
+                        <img src="./assets/image_30.jpg" alt="Carta de Vinos 1" class="image-zoom menu-image-clickable w-full h-auto">
                     </div>
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_31.jpg" alt="Carta de Vinos 2" class="image-zoom w-full h-auto">
+                        <img src="./assets/image_31.jpg" alt="Carta de Vinos 2" class="image-zoom menu-image-clickable w-full h-auto">
                     </div>
                 </div>
             </div>
@@ -610,7 +718,7 @@
             <div id="desserts-menu" class="menu-content">
                 <div class="fade-in max-w-2xl mx-auto">
                     <div class="image-container rounded-lg overflow-hidden shadow-xl">
-                        <img src="./assets/image_37.png" alt="Menú de Postres" class="image-zoom w-full h-auto">
+                        <img src="./assets/image_37.png" alt="Menú de Postres" class="image-zoom menu-image-clickable w-full h-auto">
                     </div>
                 </div>
             </div>
@@ -892,6 +1000,17 @@
         </div>
     </footer>
 
+    <!-- Menu Image Modal -->
+    <div id="menuModal" class="menu-modal">
+        <canvas id="modalParticleCanvas" class="menu-modal-canvas"></canvas>
+        <button class="menu-modal-close" id="closeModal">&times;</button>
+        <div class="menu-modal-content" id="modalContent">
+            <div class="menu-modal-image-wrapper">
+                <img id="modalImage" src="" alt="Menu Image">
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         // ========== CANVAS PARTICLE ANIMATION - WINE THEME ==========
@@ -1064,6 +1183,139 @@
                     });
                 }
             });
+        });
+
+        // ========== MENU IMAGE MODAL ==========
+        const menuModal = document.getElementById('menuModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalContent = document.getElementById('modalContent');
+        const menuImages = document.querySelectorAll('.menu-image-clickable');
+
+        // Modal Particle Animation
+        const modalCanvas = document.getElementById('modalParticleCanvas');
+        const modalCtx = modalCanvas.getContext('2d');
+        let modalParticles = [];
+        let animateModalParticles = null;
+
+        class ModalParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * modalCanvas.width;
+                this.y = Math.random() * modalCanvas.height;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.color = ['rgba(167, 0, 0, 0.6)', 'rgba(240, 230, 140, 0.4)', 'rgba(255, 255, 255, 0.3)'][Math.floor(Math.random() * 3)];
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0) this.x = modalCanvas.width;
+                if (this.x > modalCanvas.width) this.x = 0;
+                if (this.y < 0) this.y = modalCanvas.height;
+                if (this.y > modalCanvas.height) this.y = 0;
+            }
+
+            draw() {
+                modalCtx.globalAlpha = this.opacity;
+                modalCtx.fillStyle = this.color;
+                modalCtx.beginPath();
+                modalCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                modalCtx.fill();
+            }
+        }
+
+        function initModalParticles() {
+            modalCanvas.width = window.innerWidth;
+            modalCanvas.height = window.innerHeight;
+            modalParticles = [];
+            const particleCount = 80;
+
+            for (let i = 0; i < particleCount; i++) {
+                modalParticles.push(new ModalParticle());
+            }
+        }
+
+        function startModalAnimation() {
+            modalCtx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
+
+            modalParticles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            animateModalParticles = requestAnimationFrame(startModalAnimation);
+        }
+
+        function stopModalAnimation() {
+            if (animateModalParticles) {
+                cancelAnimationFrame(animateModalParticles);
+                animateModalParticles = null;
+            }
+        }
+
+        // Open modal on menu image click
+        menuImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modalImage.src = this.src;
+                modalImage.alt = this.alt;
+                menuModal.style.display = 'flex';
+
+                // Initialize and start particle animation
+                initModalParticles();
+                startModalAnimation();
+
+                // Trigger fade-in
+                setTimeout(() => {
+                    menuModal.classList.add('active');
+                }, 10);
+
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modal function
+        function closeModal() {
+            menuModal.classList.remove('active');
+            stopModalAnimation();
+            setTimeout(() => {
+                menuModal.style.display = 'none';
+                modalImage.src = '';
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on close button
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal on background click
+        modalContent.addEventListener('click', function(e) {
+            if (e.target === modalContent) {
+                closeModal();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Resize modal canvas
+        window.addEventListener('resize', () => {
+            if (menuModal.classList.contains('active')) {
+                modalCanvas.width = window.innerWidth;
+                modalCanvas.height = window.innerHeight;
+            }
         });
     </script>
 </body>
